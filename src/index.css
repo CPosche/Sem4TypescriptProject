@@ -1,3 +1,38 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.row {
+  --bs-gutter-x: 1.5rem;
+  --bs-gutter-y: 0;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: calc(-1 * var(--bs-gutter-y));
+  margin-right: calc(-0.5 * var(--bs-gutter-x));
+  margin-left: calc(-0.5 * var(--bs-gutter-x));
+}
+
+.col {
+  flex: 1 0 0%;
+}
+
+.headerbanner {
+  background-image: url("./assets/images/headerbanner.jpg");
+  overflow: hidden;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position-x: center;
+  background-position-y: -300px;
+}
+
+.App {
+  background-image: url("./assets/images/background.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+@media not all and (min-width: 640px) {
+  .headerbanner {
+    background-position-y: -100px;
+  }
+}
