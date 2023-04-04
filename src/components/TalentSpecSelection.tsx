@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Class, Spec } from "../utils/types";
 import MainStat from "./MainStat";
 import { Stats } from "../utils/enums";
+import ObjectID from "bson-objectid";
 
 type Props = {
   mainStat: Stats;
@@ -14,7 +15,8 @@ const TalentSpecSelection: React.FC<Props> = ({ mainStat, setMainStat }) => {
   const [selectedSpec, setSelectedSpec] = useState<Spec>();
 
   const getClasses = async () => {
-    const res = await fetch("http://localhost:3001/classes");
+    const res = await fetch("http://localhost:3000/api/v1/data/classes");
+    console.log(res);
     const data = await res.json();
     setSelectedClass(data[0]);
     setSelectedSpec(data[0].specs[0]);
@@ -24,7 +26,7 @@ const TalentSpecSelection: React.FC<Props> = ({ mainStat, setMainStat }) => {
 
   const handleClassChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const classToSelect = classes?.find(
-      (el) => el.id === parseInt(e.target.value)
+      (el) => el.id === new ObjectID(e.target.value)
     );
     setSelectedClass(classToSelect);
     setSelectedSpec(classToSelect?.specs[0]);
@@ -43,7 +45,7 @@ const TalentSpecSelection: React.FC<Props> = ({ mainStat, setMainStat }) => {
             onChange={(e) => handleClassChange(e)}
           >
             {classes?.map((c) => (
-              <option key={c.id} value={c.id}>
+              <option key={c.id.id} value={c.id.id}>
                 {c.name}
               </option>
             ))}
@@ -55,14 +57,12 @@ const TalentSpecSelection: React.FC<Props> = ({ mainStat, setMainStat }) => {
             className="text-center w-36 rounded-2xl"
             onChange={(e) =>
               setSelectedSpec(
-                selectedClass?.specs.find(
-                  (el) => el.id === parseInt(e.target.value)
-                )
+                selectedClass?.specs.find((el) => el.name === e.target.value)
               )
             }
           >
             {selectedClass?.specs.map((s) => (
-              <option key={s.id} value={s.id}>
+              <option key={s.name} value={s.name}>
                 {s.name}
               </option>
             ))}
