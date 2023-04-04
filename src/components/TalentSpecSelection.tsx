@@ -18,16 +18,15 @@ const TalentSpecSelection: React.FC<Props> = ({ mainStat, setMainStat }) => {
     const res = await fetch("http://localhost:3000/api/v1/data/classes");
     console.log(res);
     const data = await res.json();
-    setSelectedClass(data[0]);
-    setSelectedSpec(data[0].specs[0]);
+    data.data.sort((a: Class, b: Class) => a.name.localeCompare(b.name));
+    setSelectedClass(data.data[0]);
+    setSelectedSpec(data.data[0].specs[0]);
     console.log(data);
-    setClasses(data);
+    setClasses(data.data);
   };
 
   const handleClassChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const classToSelect = classes?.find(
-      (el) => el.id === new ObjectID(e.target.value)
-    );
+    const classToSelect = classes?.find((el) => el.name === e.target.value);
     setSelectedClass(classToSelect);
     setSelectedSpec(classToSelect?.specs[0]);
   };
@@ -45,7 +44,7 @@ const TalentSpecSelection: React.FC<Props> = ({ mainStat, setMainStat }) => {
             onChange={(e) => handleClassChange(e)}
           >
             {classes?.map((c) => (
-              <option key={c.id.id} value={c.id.id}>
+              <option key={c.name} value={c.name}>
                 {c.name}
               </option>
             ))}
