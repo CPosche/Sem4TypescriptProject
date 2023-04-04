@@ -1,11 +1,13 @@
+import ObjectID from "bson-objectid";
+
 export type Class = {
-  id: number;
+  id: ObjectID;
   name: string;
   specs: Spec[];
+  armortype: string;
 };
 
 export type Spec = {
-  id: number;
   name: string;
   mainstat: string;
 };
