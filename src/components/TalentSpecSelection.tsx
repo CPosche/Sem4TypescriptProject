@@ -4,6 +4,8 @@ import MainStat from "./MainStat";
 import { Stats } from "../utils/enums";
 import { useLazyQuery } from "@apollo/client/react";
 import { getClasses } from "../utils/queries";
+import uniqid from "uniqid";
+
 type Props = {
   mainStat: Stats;
   setMainStat: React.Dispatch<React.SetStateAction<Stats>>;
@@ -43,7 +45,7 @@ const TalentSpecSelection: React.FC<Props> = ({ mainStat, setMainStat }) => {
       <div className="flex w-full justify-around">
         {data &&
           data.classes.map((c: Class) => (
-            <div
+            <div key={uniqid()}
               className={`py-2 flex w-1/15 items-center flex-col ${c.name
                 .replace(" ", "")
                 .toLowerCase()}small h-full rounded-b-xl border-2 border-t-0 border-black classselectdiv`}
@@ -57,7 +59,7 @@ const TalentSpecSelection: React.FC<Props> = ({ mainStat, setMainStat }) => {
               />
               <div className="flex flex-col relative">
                 {c.specs.map((s: Spec) => (
-                  <div className="flex justify-center">
+                  <div key={uniqid()} className="flex justify-center">
                     <input
                       type="radio"
                       className="absolute w-full h-full opacity-0 cursor-pointer"
@@ -72,19 +74,13 @@ const TalentSpecSelection: React.FC<Props> = ({ mainStat, setMainStat }) => {
                         );
                       }}
                     />{" "}
-                    <p className="text-xs">{s.name}</p>
+                    <span className="text-xs specp">{s.name}</span>
                   </div>
                 ))}
               </div>
             </div>
           ))}
       </div>
-      {/* <MainStat
-        selectedSpec={selectedSpec}
-        mainStat={mainStat}
-        classColor={classColor}
-        setMainStat={setMainStat}
-      /> */}
     </div>
   );
 };

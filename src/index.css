@@ -16,14 +16,28 @@
   flex: 1 0 0%;
 }
 
-.classselectdiv img {
+.classselectdiv {
   transition: all 0.2s ease-in-out;
-  border-radius: 100%;
 }
 
-.classselectdiv:hover img {
-  transform: scale(1.05);
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+.classselectdiv:hover {
+  box-shadow: inset 0 0 10px #000;
+  filter: brightness(0.8);
+}
+
+.classselectdiv input {
+  height: auto;
+  width: 100%;
+}
+
+.classselectdiv input:hover + .specp {
+  color: #fff;
+  -webkit-text-stroke: 1px black;
+}
+
+.classselectdiv input:checked + .specp {
+  color: #fff;
+  -webkit-text-stroke: 1px black;
 }
 
 .mage {
