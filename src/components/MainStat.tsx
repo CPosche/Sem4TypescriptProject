@@ -38,7 +38,7 @@ const MainStat: React.FC<Props> = ({
             .map((key) =>
               selectedSpec ? (
                 key === Stats[mainStat] ? (
-                  <p className="font-bold text-orange-500" key={uniqid()}>
+                  <p className={`font-bold text-orange-500`} key={uniqid()}>
                     {key}
                   </p>
                 ) : (
