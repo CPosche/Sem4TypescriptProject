@@ -28,7 +28,7 @@ const MainStat: React.FC<Props> = ({
   }, [selectedSpec]);
 
   return (
-    <div className="flex flex-col max-sm:w-full items-center text-2xl w-1/3">
+    <div className="flex flex-col max-sm:w-full items-center text-2xl w-1/3 justify-center">
       <p>MainStat</p>
       <span className="flex">
         &#91;

@@ -22,9 +22,9 @@ const TalentSpecSelection: React.FC<Props> = ({ mainStat, setMainStat }) => {
     setSelectedSpec(classes[0].specs[0]);
   };
 
-  const handleClassChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleClassChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const classToSelect = data.classes.find(
-      (c: Class) => c.name === e.target.value
+      (c: Class) => c.name === e.target.value.split("#")[1]
     );
     setClassColor(classToSelect?.name.replace(" ", "").toLowerCase());
     setSelectedClass(classToSelect);
@@ -39,51 +39,45 @@ const TalentSpecSelection: React.FC<Props> = ({ mainStat, setMainStat }) => {
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error : {error.message}</p>;
   return (
-    <div className="w-full flex max-sm:flex-col max-sm:items-center justify-end text-black">
-      <div className="flex gap-3 w-1/3 max-sm:w-full justify-center items-center">
-        <div className="flex flex-col items-center">
-          <p>Class</p>
-          <select
-            className={`text-center ${classColor}small w-36 rounded-2xl`}
-            onChange={(e) => handleClassChange(e)}
-          >
-            {data &&
-              data.classes?.map((c: Class) => (
-                <option
-                  className={`text-center ${c.name
-                    .replace(" ", "")
-                    .toLowerCase()}small`}
-                  key={c.name}
-                  value={c.name}
-                >
-                  {c.name}
-                </option>
-              ))}
-          </select>
-        </div>
-        <div className="flex flex-col items-center">
-          <p>Spec</p>
-          <select
-            className={`text-center ${classColor}small w-36 rounded-2xl`}
-            onChange={(e) =>
-              setSelectedSpec(
-                selectedClass?.specs.find((el) => el.name === e.target.value)
-              )
-            }
-          >
-            {selectedClass?.specs.map((s) => (
-              <option
-                className={`text-center ${classColor
+    <div className="w-full flex max-sm:flex-col max-sm:items-center justify-between text-black">
+      <div className="flex w-full justify-center">
+        {data &&
+          data.classes.map((c: Class) => (
+            <div
+              className={`py-2 w-1/12 flex items-center flex-col ${c.name
+                .replace(" ", "")
+                .toLowerCase()}small h-full rounded-b-xl border-b-2 border-r-2 border-black`}
+            >
+              <img
+                src={`../../src/assets/images/${c.name
                   .replace(" ", "")
-                  .toLowerCase()}small`}
-                key={s.name}
-                value={s.name}
-              >
-                {s.name}
-              </option>
-            ))}
-          </select>
-        </div>
+                  .toLowerCase()}.png`}
+                alt={c.name}
+                className="w-2/5"
+              />
+              <div className="flex flex-col relative">
+                {c.specs.map((s: Spec) => (
+                  <div className="flex justify-center">
+                    <input
+                      type="radio"
+                      className="absolute w-full h-full opacity-0 cursor-pointer"
+                      value={`${s.name}#${c.name}`}
+                      name="spec"
+                      onChange={(e) => {
+                        handleClassChange(e);
+                        setSelectedSpec(
+                          selectedClass?.specs.find(
+                            (el) => el.name === e.target.value.split("#")[0]
+                          )
+                        );
+                      }}
+                    />{" "}
+                    <p className="text-xs">{s.name}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
       </div>
       <MainStat
         selectedSpec={selectedSpec}
