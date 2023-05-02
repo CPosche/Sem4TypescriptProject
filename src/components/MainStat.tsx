@@ -6,14 +6,14 @@ import { Spec } from "../utils/types";
 type Props = {
   selectedSpec: Spec | undefined;
   mainStat: Stats;
-  className: string | undefined;
+  classColor: string | undefined;
   setMainStat: React.Dispatch<React.SetStateAction<Stats>>;
 };
 
 const MainStat: React.FC<Props> = ({
   selectedSpec,
   mainStat,
-  className,
+  classColor,
   setMainStat,
 }) => {
   type st = keyof typeof Stats;
@@ -28,7 +28,7 @@ const MainStat: React.FC<Props> = ({
   }, [selectedSpec]);
 
   return (
-    <div className="flex flex-col max-sm:w-full items-center text-2xl w-1/3">
+    <div className="flex flex-col max-sm:w-full items-center text-2xl w-1/3 justify-center">
       <p>MainStat</p>
       <span className="flex">
         &#91;
@@ -38,7 +38,7 @@ const MainStat: React.FC<Props> = ({
             .map((key) =>
               selectedSpec ? (
                 key === Stats[mainStat] ? (
-                  <p className={`font-bold text-orange-500`} key={uniqid()}>
+                  <p className={`font-bold ${classColor}`} key={uniqid()}>
                     {key}
                   </p>
                 ) : (
