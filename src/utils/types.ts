@@ -1,7 +1,5 @@
-import ObjectID from "bson-objectid";
-
 export type Class = {
-  id: ObjectID;
+  id: string;
   name: string;
   specs: Spec[];
   armortype: string;

@@ -16,6 +16,141 @@
   flex: 1 0 0%;
 }
 
+.mage {
+  color: #3fc7eb;
+  -webkit-text-stroke: 1px black;
+}
+
+.magesmall {
+  color: #3fc7eb;
+  background-color: black;
+}
+
+.druid {
+  color: #ff7d0a;
+  -webkit-text-stroke: 1px black;
+}
+
+.druidsmall {
+  color: #ff7d0a;
+  background-color: #000000;
+}
+
+.hunter {
+  color: #abd473;
+  -webkit-text-stroke: 1px black;
+}
+
+.huntersmall {
+  color: #abd473;
+  background-color: #000000;
+}
+
+.paladin {
+  color: #f58cba;
+  -webkit-text-stroke: 1px black;
+}
+
+.paladinsmall {
+  color: #f58cba;
+  background-color: #000000;
+}
+
+.priest {
+  color: #ffffff;
+  -webkit-text-stroke: 1px black;
+}
+
+.priestsmall {
+  color: #ffffff;
+  background-color: #000000;
+}
+
+.rogue {
+  color: #fff569;
+  -webkit-text-stroke: 1px black;
+}
+
+.roguesmall {
+  color: #fff569;
+  background-color: #000000;
+}
+
+.shaman {
+  color: #0070de;
+  -webkit-text-stroke: 1px black;
+}
+
+.shamansmall {
+  color: #0070de;
+  background-color: #000000;
+}
+
+.warlock {
+  color: #9482c9;
+  -webkit-text-stroke: 1px black;
+}
+
+.warlocksmall {
+  color: #9482c9;
+  background-color: #000000;
+}
+
+.warrior {
+  color: #c79c6e;
+  -webkit-text-stroke: 1px black;
+}
+
+.warriorsmall {
+  color: #c79c6e;
+  background-color: #000000;
+}
+
+.evoker {
+  color: #33937f;
+  -webkit-text-stroke: 1px black;
+}
+
+.evokersmall {
+  color: #33937f;
+  background-color: #000000;
+}
+
+.neutral {
+  color: #000000;
+  -webkit-text-stroke: 1px black;
+}
+
+.deathknight {
+  color: #c41f3b;
+  -webkit-text-stroke: 1px black;
+}
+
+.deathknightsmall {
+  color: #c41f3b;
+  background-color: #000000;
+}
+
+.demonhunter {
+  color: #a330c9;
+  -webkit-text-stroke: 1px black;
+}
+
+.demonhuntersmall {
+  color: #a330c9;
+  background-color: #000000;
+}
+
+.monk {
+  color: #00ff98;
+  -webkit-text-stroke: 1px black;
+}
+
+.monksmall {
+  color: #00ff98;
+  background-color: #000000;
+}
+
 .headerbanner {
   background-image: url("./assets/images/headerbanner.jpg");
   overflow: hidden;
