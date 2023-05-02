@@ -12,6 +12,7 @@ module.exports = {
       width: {
         "1/8": "12.5%",
         "7/8": "87.5%",
+        "1/15": "6.666666666666667%",
       },
       boxShadow: {
         under: "0 5px 6px -3px black",

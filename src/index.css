@@ -16,6 +16,16 @@
   flex: 1 0 0%;
 }
 
+.classselectdiv img {
+  transition: all 0.2s ease-in-out;
+  border-radius: 100%;
+}
+
+.classselectdiv:hover img {
+  transform: scale(1.05);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
 .mage {
   color: #3fc7eb;
   -webkit-text-stroke: 1px black;

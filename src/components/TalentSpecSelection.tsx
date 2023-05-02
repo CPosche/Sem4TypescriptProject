@@ -39,14 +39,14 @@ const TalentSpecSelection: React.FC<Props> = ({ mainStat, setMainStat }) => {
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error : {error.message}</p>;
   return (
-    <div className="w-full flex max-sm:flex-col max-sm:items-center justify-between text-black">
-      <div className="flex w-full justify-center">
+    <div className="w-full flex justify-around text-black">
+      <div className="flex w-full justify-around">
         {data &&
           data.classes.map((c: Class) => (
             <div
-              className={`py-2 w-1/12 flex items-center flex-col ${c.name
+              className={`py-2 flex w-1/15 items-center flex-col ${c.name
                 .replace(" ", "")
-                .toLowerCase()}small h-full rounded-b-xl border-b-2 border-r-2 border-black`}
+                .toLowerCase()}small h-full rounded-b-xl border-2 border-t-0 border-black classselectdiv`}
             >
               <img
                 src={`../../src/assets/images/${c.name
@@ -79,12 +79,12 @@ const TalentSpecSelection: React.FC<Props> = ({ mainStat, setMainStat }) => {
             </div>
           ))}
       </div>
-      <MainStat
+      {/* <MainStat
         selectedSpec={selectedSpec}
         mainStat={mainStat}
         classColor={classColor}
         setMainStat={setMainStat}
-      />
+      /> */}
     </div>
   );
 };
