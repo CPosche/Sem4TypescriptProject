@@ -35,6 +35,24 @@ const loggedIn = () => {
         }
     };
 
+    const verifyToken = () => {
+        const token = sessionStorage.getItem("token");
+        if (token) {
+            const base64Url = token.split(".")[1];
+            const base64 = base64Url.replace("-", "+").replace("_", "/");
+            const decoded = JSON.parse(window.atob(base64));
+            const exp = decoded.exp;
+            const now = Date.now() / 1000;
+            if (exp < now) {
+                return false;
+            } else {
+                return true;
+            }
+        } else {
+            return false;
+        }
+    };
+
 
 const JWTHandler = {
     loggedIn,
@@ -42,6 +60,7 @@ const JWTHandler = {
     getToken,
     removeToken,
     decodeToken,
+    verifyToken,
     };
 
 export default JWTHandler;
