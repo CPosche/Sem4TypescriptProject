@@ -6,7 +6,7 @@ type Props = {
 };
 
 const StatPrior: React.FC<Props> = ({ mainStat }) => {
-  return <div className="flex justify-end">StatPrior</div>;
+  return <div className="flex justify-end flex-grow">StatPrior</div>;
 };
 
 export default StatPrior;

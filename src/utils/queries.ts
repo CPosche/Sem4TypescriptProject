@@ -13,3 +13,12 @@ export const getClasses = gql`
     }
   }
 `;
+
+export const getDungeons = gql`
+  query getDungeons {
+    dungeons {
+      id
+      image
+    }
+  }
+`;

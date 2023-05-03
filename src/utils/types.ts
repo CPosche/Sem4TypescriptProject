@@ -14,3 +14,8 @@ export type SecStat = {
   id: number;
   name: string;
 };
+
+export type DungeonSelect = {
+  id: string;
+  image: string;
+};

@@ -45,7 +45,8 @@ const TalentSpecSelection: React.FC<Props> = ({ mainStat, setMainStat }) => {
       <div className="flex w-full justify-around">
         {data &&
           data.classes.map((c: Class) => (
-            <div key={uniqid()}
+            <div
+              key={uniqid()}
               className={`py-2 flex w-1/15 items-center flex-col ${c.name
                 .replace(" ", "")
                 .toLowerCase()}small h-full rounded-b-xl border-2 border-t-0 border-black classselectdiv`}
