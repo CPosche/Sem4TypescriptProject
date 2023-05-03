@@ -1,9 +1,10 @@
 import { useState } from "react";
 import Content from "./components/Content";
 import Header from "./components/Header";
+import JWTHandler from "./utils/JWTHandler";
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(JWTHandler.loggedIn());
 
   return (
     <div className="App h-screen w-screen flex flex-col bg-slate-900 text-white justify-center items-center">

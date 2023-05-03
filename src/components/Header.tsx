@@ -15,7 +15,7 @@ const Header: React.FC<Props> = ({ loggedIn, setLoggedIn }) => {
       <div className="flex w-1/2 justify-between">
         <Logo />
         <div className="flex pr-10 items-center">
-          {loggedIn ? <Loggedin /> : <Login />}
+          {loggedIn ? <Loggedin setLoggedIn={setLoggedIn} /> : <Login setLoggedIn={setLoggedIn} />}
         </div>
       </div>
     </div>
