@@ -16,9 +16,24 @@
   flex: 1 0 0%;
 }
 
+.stroke {
+  -webkit-text-stroke: 0.5px black;
+}
+
+.logininput {
+  box-shadow: inset 0 0 10px #000;
+  text-align: center;
+  color: #000;
+  @apply py-1;
+}
+
 .dungeondisplaydiv:hover {
   box-shadow: inset 0 0 10px #000;
   filter: brightness(0.8);
+}
+
+.dungeondisplaydiv:hover > img {
+  opacity: 0.6;
 }
 
 .classselectdiv {
