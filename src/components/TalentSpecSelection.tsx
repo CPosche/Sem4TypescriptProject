@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Class, Spec } from "../utils/types";
 import { Stats } from "../utils/enums";
 import { useQuery } from "@apollo/client/react";
@@ -8,12 +8,21 @@ import uniqid from "uniqid";
 type Props = {
   mainStat: Stats;
   setMainStat: React.Dispatch<React.SetStateAction<Stats>>;
+  selectedClass: Class | undefined;
+  setSelectedClass: React.Dispatch<React.SetStateAction<Class | undefined>>;
+  selectedSpec: Spec | undefined;
+  setSelectedSpec: React.Dispatch<React.SetStateAction<Spec | undefined>>;
 };
 
-const TalentSpecSelection: React.FC<Props> = ({ mainStat, setMainStat }) => {
+const TalentSpecSelection: React.FC<Props> = ({
+  mainStat,
+  setMainStat,
+  selectedClass,
+  setSelectedClass,
+  selectedSpec,
+  setSelectedSpec,
+}) => {
   const [classColor, setClassColor] = useState<string>("");
-  const [selectedClass, setSelectedClass] = useState<Class>();
-  const [selectedSpec, setSelectedSpec] = useState<Spec>();
   const { loading, error, data } = useQuery(getClasses);
 
   const handleClasses = () => {
@@ -24,18 +33,16 @@ const TalentSpecSelection: React.FC<Props> = ({ mainStat, setMainStat }) => {
   };
 
   const handleClassChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.value.split("#")[1] === selectedClass?.name) return;
     const classToSelect = data.classes.find(
       (c: Class) => c.name === e.target.value.split("#")[1]
     );
     setClassColor(classToSelect?.name.replace(" ", "").toLowerCase());
     setSelectedClass(classToSelect);
-    setSelectedSpec(classToSelect?.specs[0]);
   };
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error : {error.message}</p>;
-  if (data) {
-    if (!selectedClass) handleClasses();
-  }
+
+  // if (loading) return <p>Loading...</p>;
+  // if (error) return <p>Error : {error.message}</p>;
   return (
     <div className="w-full flex justify-around text-black">
       <div className="flex w-full justify-around">
