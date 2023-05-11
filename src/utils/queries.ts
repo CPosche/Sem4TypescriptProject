@@ -8,6 +8,7 @@ export const getClasses = gql`
       specs {
         name
         mainstat
+        id
       }
       armortype
     }
@@ -25,6 +26,9 @@ export const getDungeons = gql`
 
 export const login = gql`
   mutation login($username: String!, $password: String!) {
-    login(username: $username, password: $password)
+    login(username: $username, password: $password) {
+      message
+      status
+    }
   }
 `;

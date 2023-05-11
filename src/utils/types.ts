@@ -8,6 +8,7 @@ export type Class = {
 export type Spec = {
   name: string;
   mainstat: string;
+  id: string;
 };
 
 export type SecStat = {

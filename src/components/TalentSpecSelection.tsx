@@ -1,8 +1,7 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Class, Spec } from "../utils/types";
-import MainStat from "./MainStat";
 import { Stats } from "../utils/enums";
-import { useLazyQuery } from "@apollo/client/react";
+import { useQuery } from "@apollo/client/react";
 import { getClasses } from "../utils/queries";
 import uniqid from "uniqid";
 
@@ -15,7 +14,7 @@ const TalentSpecSelection: React.FC<Props> = ({ mainStat, setMainStat }) => {
   const [classColor, setClassColor] = useState<string>("");
   const [selectedClass, setSelectedClass] = useState<Class>();
   const [selectedSpec, setSelectedSpec] = useState<Spec>();
-  const [getAllClasses, { loading, error, data }] = useLazyQuery(getClasses);
+  const { loading, error, data } = useQuery(getClasses);
 
   const handleClasses = () => {
     const classes: Class[] = data.classes;
@@ -32,14 +31,11 @@ const TalentSpecSelection: React.FC<Props> = ({ mainStat, setMainStat }) => {
     setSelectedClass(classToSelect);
     setSelectedSpec(classToSelect?.specs[0]);
   };
-
-  useEffect(() => {
-    {
-      data ? handleClasses() : getAllClasses();
-    }
-  }, [data]);
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error : {error.message}</p>;
+  if (data) {
+    if (!selectedClass) handleClasses();
+  }
   return (
     <div className="w-full flex justify-around text-black">
       <div className="flex w-full justify-around">
@@ -63,15 +59,24 @@ const TalentSpecSelection: React.FC<Props> = ({ mainStat, setMainStat }) => {
                   <div key={uniqid()} className="flex justify-center">
                     <input
                       type="radio"
+                      checked={s.id === selectedSpec?.id}
                       className="absolute w-full h-full opacity-0 cursor-pointer"
-                      value={`${s.name}#${c.name}`}
+                      value={`${s.id}#${c.name}`}
                       name="spec"
                       onChange={(e) => {
                         handleClassChange(e);
                         setSelectedSpec(
                           selectedClass?.specs.find(
-                            (el) => el.name === e.target.value.split("#")[0]
+                            (el) => el.id === e.target.value.split("#")[0]
                           )
+                        );
+                        // set the main stat to the main stat of the selected spec
+                        setMainStat(
+                          Stats[
+                            selectedClass?.specs.find(
+                              (el) => el.id === e.target.value.split("#")[0]
+                            )?.mainstat as keyof typeof Stats
+                          ]
                         );
                       }}
                     />{" "}
