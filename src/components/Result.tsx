@@ -1,5 +1,5 @@
 const Result = () => {
-  return <div>Result</div>;
+  return <div className="flex flex-grow">Result</div>;
 };
 
 export default Result;
