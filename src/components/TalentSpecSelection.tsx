@@ -43,6 +43,9 @@ const TalentSpecSelection: React.FC<Props> = ({
 
   // if (loading) return <p>Loading...</p>;
   // if (error) return <p>Error : {error.message}</p>;
+  useEffect(() => {
+    if (data) handleClasses();
+  }, [data]);
   return (
     <div className="w-full flex justify-around text-black">
       <div className="flex w-full justify-around">
