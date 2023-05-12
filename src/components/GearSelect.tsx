@@ -1,13 +1,31 @@
+import { useState } from 'react';
+
 type Props = {
   setSelectedGear: React.Dispatch<React.SetStateAction<Map<string, boolean>>>;
 };
 
 const GearSelect: React.FC<Props> = ({setSelectedGear}) => {
-  let gearslots = new Map<string, boolean>([["Head", false], ["Neck", false], ["Shoulder", false], ["Back", false], ["Chest", false], ["Wrist", false], ["Hands", false], ["Waist", false], ["Legs", false], ["Feet", false]]);
+  const [gearslots, setGearSlots] = useState<Map<string, boolean>>(() => {
+    // Initialize the gearslots map
+    return new Map<string, boolean>([
+      ['Head', false],
+      ['Neck', false],
+      ['Shoulder', false],
+      ['Back', false],
+      ['Chest', false],
+      ['Wrist', false],
+      ['Hands', false],
+      ['Waist', false],
+      ['Legs', false],
+      ['Feet', false],
+    ]);
+  });
   
   const handleGearChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    gearslots.set(e.target.name, e.target.checked);
-    setSelectedGear(gearslots);
+    const updatedGearSlots = new Map(gearslots);
+    updatedGearSlots.set(e.target.name, e.target.checked);
+    setGearSlots(updatedGearSlots);
+    setSelectedGear(updatedGearSlots);
   };
   return <div className="flex flex-col">
     <div className="flex justify-center">GearSelect</div>

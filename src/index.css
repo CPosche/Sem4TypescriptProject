@@ -61,6 +61,38 @@
   -webkit-text-stroke: 1px black;
 }
 
+.invertround {
+  position: relative;
+}
+
+.invertround::before {
+  content: "";
+  position: absolute;
+
+  background-color: #0074D9;
+  bottom: 0px;
+  left: -14px;
+  height: 10px;
+  width: 10px;
+  @apply rounded-br-md;
+  background-color: transparent;
+  box-shadow: 4px 0 0 0 black; /* This is where the magic happens! */
+}
+
+.invertround::after {
+  content: "";
+  position: absolute;
+
+  background-color: #0074D9;
+  bottom: 0px;
+  right: -14px;
+  height: 10px;
+  width: 10px;
+  @apply rounded-bl-md;
+  background-color: transparent;
+  box-shadow: -4px 0 0 0 black; /* This is where the magic happens! */
+}
+
 .mage {
   color: #3fc7eb;
   -webkit-text-stroke: 1px black;

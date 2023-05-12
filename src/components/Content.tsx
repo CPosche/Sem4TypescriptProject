@@ -13,16 +13,17 @@ const Content = () => {
   const [selectedSpec, setSelectedSpec] = useState<Spec>();
   const [selectedDungeon, setSelectedDungeon] = useState<string[]>([]);
   const [selectedGear, setSelectedGear] = useState<Map<string, boolean>>(new Map());
-  const [statPrior, setStatPrior] = useState<Map<string, number>>(new Map());
+  const [statPriority, setStatPriority] = useState<Map<string, number>>(new Map());
   const [result, setResult] = useState<string>("");
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const handleRunCalculations = () => {
     const data = {
-      mainStat,
-      selectedClass,
-      selectedSpec,
+      mainstat: Stats[mainStat],
+      armortype: selectedClass?.armortype,
       selectedDungeon,
       selectedGear,
+      statPriority,
     };
     console.log("Calculations");
     console.log(data);
@@ -43,11 +44,14 @@ const Content = () => {
       "
       >
         <div className="flex flex-col w-1/3">
-          <StatPrior mainStat={mainStat} />
+          <StatPrior mainStat={mainStat} setStatPriority={setStatPriority} />
           <DungeonRaidSelect selectedDungeon={selectedDungeon} setSelectedDungeon={setSelectedDungeon} />
         </div>
         <div className="flex flex-col w-1/3">
           <GearSelect setSelectedGear={setSelectedGear} />
+          {isLoading && <div className="flex justify-center">
+            <img src="https://thumbs.gfycat.com/IlliterateConfusedAmericancrayfish-small.gif" alt="loading" className="" />{" "}
+          </div>}
         </div>
         <div className="flex flex-col w-1/3">
           <Result />
