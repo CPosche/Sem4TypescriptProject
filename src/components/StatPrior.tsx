@@ -1,5 +1,4 @@
 import { Stats } from "../utils/enums";
-import { SecStat } from "../utils/types";
 import { useState } from "react";
 
 type Props = {
@@ -10,7 +9,7 @@ type Props = {
 const StatPrior: React.FC<Props> = ({ mainStat, setStatPriority }) => {
   const [statSlots, setStatSlots] = useState<Map<string, number>>(() => {
     // Initialize the gearslots map
-    
+
     return new Map<string, number>([
       ["HASTE_RATING", 0],
       ["CRIT_RATING", 0],
@@ -42,8 +41,8 @@ const StatPrior: React.FC<Props> = ({ mainStat, setStatPriority }) => {
           <div className="flex gap-1 ">
             <p>Haste</p>
             <input
-            name="HASTE_RATING"
-            onChange={(e) => handleStatChange(e)}
+              name="HASTE_RATING"
+              onChange={(e) => handleStatChange(e)}
               type="number"
               className="w-10 text-center rounded-lg text-black"
             />
@@ -51,8 +50,8 @@ const StatPrior: React.FC<Props> = ({ mainStat, setStatPriority }) => {
           <div className="flex gap-1 ">
             <p>Crit</p>
             <input
-            name="CRIT_RATING"
-            onChange={(e) => handleStatChange(e)}
+              name="CRIT_RATING"
+              onChange={(e) => handleStatChange(e)}
               type="number"
               className="w-10 text-center rounded-lg text-black"
             />
@@ -60,8 +59,8 @@ const StatPrior: React.FC<Props> = ({ mainStat, setStatPriority }) => {
           <div className="flex gap-1">
             <p>Versatility</p>
             <input
-            name="VERSATILITY"
-            onChange={(e) => handleStatChange(e)}
+              name="VERSATILITY"
+              onChange={(e) => handleStatChange(e)}
               type="number"
               className="w-10 text-center rounded-lg text-black"
             />
@@ -69,8 +68,8 @@ const StatPrior: React.FC<Props> = ({ mainStat, setStatPriority }) => {
           <div className="flex gap-1">
             <p>Mastery</p>
             <input
-            name="MASTERY_RATING"
-            onChange={(e) => handleStatChange(e)}
+              name="MASTERY_RATING"
+              onChange={(e) => handleStatChange(e)}
               type="number"
               className="w-10 text-center rounded-lg text-black"
             />

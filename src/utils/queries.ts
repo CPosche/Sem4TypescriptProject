@@ -32,3 +32,25 @@ export const login = gql`
     }
   }
 `;
+
+export const getItemsFromStatWeight = gql`
+  mutation GetItemsFromStatWeight($calcData: calcDataInput) {
+    getItemsFromStatWeight(calcData: $calcData) {
+      Items {
+        name
+        preview_item {
+          item_subclass {
+            name
+          }
+          stats {
+            value
+            type {
+              type
+            }
+          }
+        }
+      }
+      dungeons
+    }
+  }
+`;
