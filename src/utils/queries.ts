@@ -38,15 +38,35 @@ export const getItemsFromStatWeight = gql`
     getItemsFromStatWeight(calcData: $calcData) {
       Items {
         name
+        image
         preview_item {
+          inventory_type {
+            name
+            type
+          }
           item_subclass {
+            id
             name
           }
-          stats {
+          level {
+            display_string
             value
+          }
+          stats {
+            display {
+              color {
+                a
+                b
+                g
+                r
+              }
+              display_string
+            }
             type {
+              name
               type
             }
+            value
           }
         }
       }

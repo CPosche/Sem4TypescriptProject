@@ -23,11 +23,16 @@ export type DungeonSelect = {
 
 export type CalculatedData = {
   dungeons: string[];
-  Items: Item[];
+  Items: Array<Item[]>;
 };
+
+export type ItemsPrior = {
+  getItemsFromStatWeight: CalculatedData;
+}
 
 export type Item = {
   name: string;
+  image: string;
   preview_item: TPreviewItem;
 };
 

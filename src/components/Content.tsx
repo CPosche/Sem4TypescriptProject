@@ -5,7 +5,7 @@ import GearSelect from "./GearSelect";
 import Result from "./Result";
 import StatPrior from "./StatPrior";
 import TalentSpecSelection from "./TalentSpecSelection";
-import { CalculatedData, Class, Spec } from "../utils/types";
+import { CalculatedData, Class, ItemsPrior, Spec } from "../utils/types";
 import { useMutation } from "@apollo/client";
 import { getItemsFromStatWeight } from "../utils/queries";
 
@@ -20,8 +20,8 @@ const Content = () => {
   const [statPriority, setStatPriority] = useState<Map<string, number>>(
     new Map()
   );
-  const [result, setResult] = useState<CalculatedData>();
-  const [execGetItemsFromStatWeight, { data, loading, error }] = useMutation(
+  const [result, setResult] = useState<ItemsPrior>();
+  const [execGetItemsFromStatWeight, { data, loading, error }] = useMutation<ItemsPrior>(
     getItemsFromStatWeight
   );
 
@@ -46,10 +46,10 @@ const Content = () => {
 
   useEffect(() => {
     if (data) {
-      console.log(data);
       setResult(data);
+      console.log(result)
     }
-  }, [data]);
+  }, [data, result]);
   return (
     <div className="flex flex-grow flex-col w-full">
       <TalentSpecSelection
@@ -75,7 +75,7 @@ const Content = () => {
           <GearSelect setSelectedGear={setSelectedGear} />
         </div>
         <div className="flex flex-col w-1/3">
-          <Result />
+          <Result dungeonAndItems={result}/>
           <div className="pb-5 flex justify-center relative">
             <div>
               <button
